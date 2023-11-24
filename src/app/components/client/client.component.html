@@ -1,0 +1,140 @@
+<div class="container">
+  <section class="d-flex gap-3 mb-4">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#createModal"
+    >
+      New
+    </button>
+    <a href="http://localhost:8586/clientes/exportar" target="_blank" class="btn btn-primary">Export</a>
+  </section>
+  <section class="mb-5">
+    <form [formGroup]="formSearch" (ngSubmit)="getClients()">
+      <div class="input-group mb-3">
+        <input
+          formControlName="alSharedKey"
+          id="alSharedKey"
+          type="text"
+          class="form-control"
+          placeholder="Enter Shared key"
+          aria-label="Enter Shared key"
+          aria-describedby="button-addon2"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="submit"
+          id="button-addon2"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+
+    <button type="button" class="btn btn-primary" (click)="handleAdvancedSearch()">Advanced Search</button>
+    <div *ngIf="showAdvancedSearch" class="container py-5">
+      <form [formGroup]="formSearchAdvance" (ngSubmit)="getClients()">
+        <div class="mb-3 d-flex gap-5">
+          <label for="alBusinessId" class="form-label text-nowrap">Name</label>
+          <input type="text" class="form-control" id="alBusinessId" formControlName="alBusinessId" />
+        </div>
+        <div class="mb-3 d-flex gap-5">
+          <label for="alPhone" class="form-label text-nowrap">Phone</label>
+          <input type="text" class="form-control" id="alPhone" formControlName="alPhone" />
+        </div>
+        <div class="mb-3 d-flex gap-5">
+          <label for="alEmail" class="form-label text-nowrap">E-mail</label>
+          <input type="text" class="form-control" id="alEmail" formControlName="alEmail" />
+        </div>
+        <div class="mb-3 d-flex gap-5">
+          <label for="alDateAdded" class="form-label text-nowrap">Start date</label>
+          <input type="date" class="form-control" id="alDateAdded" formControlName="alDateAdded" />
+        </div>
+        <div class="mb-3 d-flex gap-5">
+          <label for="alDateAdded" class="form-label text-nowrap">End date</label>
+          <input type="date" class="form-control" id="alDateAdded" />
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Ok</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section>
+    <h1 class="mb-4">Clients</h1>
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Shared Key</th>
+          <th scope="col">Business ID</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Data Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{client.alSharedKey}}</td>
+          <td>{{client.alBusinessId}}</td>
+          <td>{{client.alEmail}}</td>
+          <td>{{client.alPhone}}</td>
+          <td>{{client.alDateAdded}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="createModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Create New Client
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formClient" (ngSubmit)="onSubmit()">
+          <div class="mb-3 d-flex gap-5">
+            <label for="alBusinessId" class="form-label text-nowrap">Name</label>
+            <input type="text" class="form-control" id="alBusinessId" formControlName="alBusinessId" />
+          </div>
+          <div class="mb-3 d-flex gap-5">
+            <label for="alPhone" class="form-label text-nowrap">Phone</label>
+            <input type="text" class="form-control" id="alPhone" formControlName="alPhone" />
+          </div>
+          <div class="mb-3 d-flex gap-5">
+            <label for="alEmail" class="form-label text-nowrap">E-mail</label>
+            <input type="text" class="form-control" id="alEmail" formControlName="alEmail" />
+          </div>
+          <div class="mb-3 d-flex gap-5">
+            <label for="alDateAdded" class="form-label text-nowrap">Start date</label>
+            <input type="date" class="form-control" id="alDateAdded" formControlName="alDateAdded" />
+          </div>
+          <div class="mb-3 d-flex gap-5">
+            <label for="alDateAdded" class="form-label text-nowrap">End date</label>
+            <input type="date" class="form-control" id="alDateAdded" />
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Ok</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

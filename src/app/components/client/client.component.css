@@ -1,0 +1,12 @@
+.modal-content {
+  background-color: rgba(89, 158, 219, 0.904);
+}
+
+.modal-header {
+  border: 1px solid gray;
+}
+
+.btn-primary {
+  background-color: #00a2e3;
+  border-color: #00a2e3;
+}
